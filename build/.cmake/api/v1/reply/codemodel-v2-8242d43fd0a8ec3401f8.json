@@ -1,0 +1,151 @@
+{
+	"configurations" : 
+	[
+		{
+			"abstractTargets" : [],
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"jsonFile" : "directory-.-9ad1a58d4644cf6543fa.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "4.1"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5,
+						6,
+						7,
+						8,
+						9,
+						10
+					]
+				}
+			],
+			"name" : "",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "UNIX",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5,
+						6,
+						7,
+						8,
+						9,
+						10
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "impulse::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-impulse-b5d97e0406044955f052.json",
+					"name" : "impulse",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "impulse-sweep::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-impulse-sweep-2dae0759904cf513a8a2.json",
+					"name" : "impulse-sweep",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "sawtooth::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-sawtooth-0f26fcfad16ef3abe5ec.json",
+					"name" : "sawtooth",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "sawtooth-sweep::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-sawtooth-sweep-89d4cc0d2fa92b92d7e2.json",
+					"name" : "sawtooth-sweep",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "sine-sweep::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-sine-sweep-d3516f3b987371b9bd4e.json",
+					"name" : "sine-sweep",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "square::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-square-fa2443e498b8fb36600a.json",
+					"name" : "square",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "square-sweep::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-square-sweep-33c45ba3af4f818904d4.json",
+					"name" : "square-sweep",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "triangle::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-triangle-eccb99ae510ae9b9ddf2.json",
+					"name" : "triangle",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "triangle-sweep::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-triangle-sweep-04dbfe0d9962a49b4bbe.json",
+					"name" : "triangle-sweep",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "wav-read::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-wav-read-094a04620d1869bb65a3.json",
+					"name" : "wav-read",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "wav-write::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-wav-write-d04d27fb9a495dc2dea2.json",
+					"name" : "wav-write",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/Users/duruoxi/Desktop/UNIX/build",
+		"source" : "/Users/duruoxi/Desktop/UNIX"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 9
+	}
+}

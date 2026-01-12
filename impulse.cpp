@@ -1,121 +1,32 @@
 #include "everything.h"
 
-int main(int argc, char* argv[]) {
-//int max_number
-//float freq
-//float impulse_wave
-//How to caluculate max number of harmonic
-//nyquiest = samplerate/2
-//for(int n = 1; n < max_number; n + 1)
-//{
-//impulse_wave = sin(n * 2 * pi* freq)
-//}
-//impulse_wave/max_number
-//ran this code, and its telling me that it needs to calculate 48000 times per second
+int main() {
+    // Sampling rate and duration
+    const double sampleRate = 48000.0; // 48 kHz
+    const double duration = 5.0;      // 5 seconds
+    const int numSamples = sampleRate * duration;
 
-//Try 2
-//tyring to caluculat max number of harmonic
-//float freq = 440;
-//int max_number_of_harmonic = (SAMPLE_RATE/(2 * freq));
-//float length_of_sound;
+    for (int i = 0; i < numSamples; ++i) {
+        double t = static_cast<double>(i) / sampleRate;
 
-//for(int n = 1; n < max_number_of_harmonic; n ++)
-//{
-//    for(float duration = 0; duration < length_of_sound * SAMPLE_RATE; duration++)
-//    {
-//    impulse_wave += sin(n * 2 * pi* freq * duration)
-//    }
-//
-//}
+        // Frequency of the impulse train (e.g., periodicity of impulses)
+        double frequency = 440.0; // Example: A4 note
 
-//try 2 todl me my order of for loop was wrong
+        // Calculate the number of harmonics below Nyquist
+        int numHarmonics = static_cast<int>(sampleRate / (2.0 * frequency));
 
-//here is try 3
+        // Generate impulse train using Fourier series
+        double impulse = 0.0;
+        for (int n = 1; n <= numHarmonics; ++n) { // Include all harmonics
+            impulse += sin(2.0 * M_PI * n * frequency * t);
+        }
 
-//float freq = 440;
-//int max_number_of_harmonic = (SAMPLE_RATE/(2 * freq));
-//float length_of_sound = 5;//pretend this is in seconds for me
-//float t = length_of_sound/SAMPLE_RATE
-//for(float duration = 0; duration < length_of_sound * SAMPLE_RATE; duration++)
-//{
-   // float impulse_wave = 0 //I think this will be the value of samples to be printed out?
-  //  for(int n = 1; n < max_number_of_harmonic; n ++)
-   //     {
-  //      
-  //      impulse_wave += sin(n * 2 * pi* freq * t)
-    //    }
-//
-//}
+        // Normalize the amplitude
+        impulse /= numHarmonics;
 
-//try 4, telling me that my t variable isnt calculating
-
-//float freq = 440;
-//int max_number_of_harmonic = (SAMPLE_RATE/(2 * freq));
-//float length_of_sound = 5;//pretend this is in seconds for me
-
-//for(float duration = 0; duration < length_of_sound * SAMPLE_RATE; duration++)
-//{
-  //  float impulse_wave = 0 //I think this will be the value of samples to be printed out?
-   // float t =  duration/SAMPLE_RATE; //how to calulate current decrete sample moment
-   // for(int n = 1; n < max_number_of_harmonic; n ++)
-      //  {
-        
-      //  impulse_wave += sin(n * 2 * pi* freq * t)
-       // }
-        //impulse_wave/max_number_of_harmonic
-
-//}
-
-
-// try 5
-//float freq = 440;
-//int max_number_of_harmonic = (SAMPLE_RATE/(2 * freq));
-//float length_of_sound = 5;//pretend this is in seconds for me
-
-//for(int duration = 0; duration < length_of_sound * SAMPLE_RATE; duration++)//told me to change to int
-//{
-    //float impulse_wave = 0; //I think this will be the value of samples to be printed out?
-    //float t =  duration/SAMPLE_RATE; //how to calulate current decrete sample moment
-   // for(int n = 1; n < max_number_of_harmonic; n ++)
-   // {
-    ////impulse_wave += sin(n * 2 * pi* freq * t);
-   // }
-  //      float Current_Sample = impulse_wave/max_number_of_harmonic; //Told me I need to assign the value 
-
-//}
-
-//try 6
-
-//float freq = 440;
-//int max_number_of_harmonic = (SAMPLE_RATE/(2 * freq));
-//float length_of_sound = 5;//pretend this is in seconds for me
-
-//for(int duration = 0; duration < length_of_sound * SAMPLE_RATE; duration++)//told me to change to int
-//{
- //   float impulse_wave = 0; //I think this will be the value of samples to be printed out?
-   // float t =  duration/SAMPLE_RATE; //how to calulate current decrete sample moment
-   // for(int n = 1; n < max_number_of_harmonic; n ++)
-   // {
-   //     impulse_wave += sin(n * 2 * pi* freq * t);
-    //}
-   //   mono(impulse_wave/max_number_of_harmonic); //Told me I need to put this in mono and refer to Everthing.h, not sure why
-
-//}
-
-float freq = 440;
-int max_number_of_harmonic = (SAMPLE_RATE/(2 * freq));
-float length_of_sound = 5;//pretend this is in seconds for me
-
-for(int duration = 0; duration < length_of_sound * SAMPLE_RATE; duration++)//told me to change to int
-{
-    float impulse_wave = 0; //I think this will be the value of samples to be printed out?
-    float t =  duration/SAMPLE_RATE; //how to calulate current decrete sample moment
-    for(int n = 1; n < max_number_of_harmonic; n ++)
-    {
-        impulse_wave += sin(n * 2 * pi* freq * t);
+        // Output the impulse train
+        mono(impulse);
     }
-      mono(impulse_wave/max_number_of_harmonic); //Told me I need to put this in mono and refer to Everthing.h, not sure why
 
-}
-
+    return 0;
 }

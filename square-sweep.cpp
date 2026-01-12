@@ -1,34 +1,35 @@
 #include "everything.h"
 
-int main(int argc, char* argv[]) 
-{
+int main(int argc, char* argv[]) {
+    float phase = 0.0f;
 
-float phase = 0;
-float length_of_sound = 5;
+    // Start from the highest MIDI note (127) and sweep down to the lowest (0)
+    for (float note = 127.0f; note > 0.0f; note -= 0.001f) {
+        // Convert MIDI note to frequency
+        float frequency = mtof(note);
 
-for(int duration = 0; duration < length_of_sound * SAMPLE_RATE; duration++)
-{
-    float square_wave= 0; 
-    float t =  (1.0 * duration)/SAMPLE_RATE; 
-    double current_note = scale(t, 0, length_of_sound, 127.0, 0.0);
-    float current_freq = mtof(current_note);
-    float max_number_of_harmonic = (SAMPLE_RATE/(2 * current_freq));
-    int rounded_max_number_harm = max_number_of_harmonic;
-    float fade_amount = max_number_of_harmonic - rounded_max_number_harm;
+        // Calculate the number of harmonics below the Nyquist frequency
+        int numHarmonics = static_cast<int>(SAMPLE_RATE / (2.0f * frequency));
+        numHarmonics = numHarmonics - (numHarmonics % 2 == 0); // Ensure odd harmonics only
 
-    if(rounded_max_number_harm <1) rounded_max_number_harm = 1;
-
-        for(int n = 1; n <= rounded_max_number_harm; n +=2)
-        {
-             square_wave += ((sin(n * 2 * pi* phase))/n);
+        // Generate square wave using Fourier series
+        float square = 0.0f;
+        for (int n = 1; n <= numHarmonics; n += 2) { // Only odd harmonics
+            square += (1.0f / n) * sin(phase * n);
         }
-   
-        float output = square_wave * (4/pi) ; 
-        mono(output* 0.707); 
 
-          phase += current_freq / SAMPLE_RATE;
-            if (phase > 1.0)  
-                phase -= 1.0;
-    
-  }
+        // Normalize the amplitude
+        square *= 4.0f / M_PI;
+
+        // Output the wave, scaled by an amplitude factor
+        mono(square * 0.707f);
+
+        // Update the phase
+        phase += 2.0f * M_PI * frequency / SAMPLE_RATE;
+        if (phase > 2.0f * M_PI) {
+            phase -= 2.0f * M_PI;
+        }
+    }
+
+    return 0;
 }
